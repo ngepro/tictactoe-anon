@@ -94,21 +94,50 @@ function markGrid(mark, position) {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <header className="App-header">
+      <div className="board">
+        <span> {winner} </span>
+        {/* <button onClick={() => reset()}>reset</button> */}
+      </div>
+    <div className="wrapper">
+      {(grid.map((item, i) =>         
+        <li > 
+        <h3>
+        {grid[i] || '...'}
+        </h3>
+        <div className="marks">
+        <hr/>
+        <button disabled={disableButtons} onClick={() => pick('x', i)}>X</button>
+        <button disabled={disableButtons} onClick={() => pick('o', i)}>O</button> 
+        </div>
+        </li>
+      ))}
+      
+      {(grid2.map((item, i) =>         
+        <li > 
+        <h3>
+        {grid2[i] ||  '...'}
+        </h3>
+        <hr/>
+        <button disabled={disableButtons} onClick={() => pick('x', i+3)}>X</button>
+        <button disabled={disableButtons} onClick={() => pick('o', i+3)}>O</button> 
+        </li>     
+      ))}
+
+      {(grid3.map((item, i) =>         
+        <li > 
+        <h3>
+        {grid3[i] ||  '...'}
+        </h3>
+        <hr/>
+        <button disabled={disableButtons} onClick={() => pick('x', i+6)}>X</button>
+        <button disabled={disableButtons} onClick={() => pick('o', i+6)}>O</button> 
+        </li>
+      ))}
+
+      </div>
+    </header>
+  </div>
   );
 }
 
