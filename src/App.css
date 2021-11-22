@@ -39,6 +39,19 @@
   bottom:0;
 }
 
+.finished {
+  background-color: yellowgreen;
+  color: #282c34;
+}
+
+.winning  {
+  color: #282c34;
+}
+
+h1 {
+  margin-bottom: 0;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
