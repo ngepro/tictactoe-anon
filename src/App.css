@@ -28,7 +28,8 @@
 }
 
 .board {
-  background-color:yellowgreen;
+  background-color:wheat;
+  color: black;
   width: 70%;
   padding: 1%;
   border-radius: 5%;
