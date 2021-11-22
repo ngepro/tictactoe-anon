@@ -18,6 +18,7 @@ function App() {
   const grid3 = [bottomleft, bottomcenter, bottomright];
   const [winner, setWinner] = useState('No winner... Game is going on');
   const [disableButtons, setDisableButtons] = useState(false);
+  const [winningPositions, setWinningPositions] = useState(['']);
 
   // Functions to check if there is any winner 
   function checkForWinner() {
@@ -26,29 +27,37 @@ function App() {
         if (topleft && topcenter && topright && (topleft === topcenter) && (topcenter === topright)) {
           setDisableButtons(true);
           setWinner(topleft + ' wins');
+          setWinningPositions([0,1,2]);
         } else if (centerleft && centercenter && centerright && (centerleft === centercenter) && (centercenter === centerright)) {
           setDisableButtons(true);
           setWinner(centerleft + ' wins');
+          setWinningPositions([3,4,5]);
         } else if (bottomleft && bottomcenter && bottomright && (bottomleft === bottomcenter) && (bottomcenter === bottomright)) {
           setDisableButtons(true);
           setWinner(bottomleft + ' wins');
+          setWinningPositions([6,7,8]);
         } else if (topleft && centerleft && bottomleft && (bottomleft === centerleft) && (centerleft === bottomleft)) {
           setDisableButtons(true);
           setWinner(topleft + ' wins');
+          setWinningPositions([0,4,8]);
         } else if (topcenter && centercenter && bottomcenter && (topcenter === centercenter) && (centercenter === bottomcenter)) {
           setDisableButtons(true);
           setWinner(topcenter + ' wins');
+          setWinningPositions([1,4,7]);
         } else if (topright && centerright && bottomright && (topright === centerright) && (centerright === bottomright)) {
           setDisableButtons(true);
           setWinner(topright + ' wins');
+          setWinningPositions([2,5,8]);
         } else if (topleft && centercenter && bottomright && (topleft === centercenter) && (centercenter === bottomright)) {
           setDisableButtons(true);
           setWinner(topleft + ' wins');
+          setWinningPositions([0,4,8]);
         } else if (bottomleft && centercenter && topright && (bottomleft === centercenter) && (centercenter === topright)) {
           setDisableButtons(true);
           setWinner(bottomleft + ' wins');
+          setWinningPositions([6,4,2]);
         } 
-      }, 1000);
+      }, 50);
     });
   }
 
@@ -106,21 +115,22 @@ function App() {
     setBottomright('');
     setWinner('No winner... Game is going on');
     setDisableButtons(false);
+    setWinningPositions(['']);
   }
 
   return (
     <div className="App">
     <header className="App-header">
-      <div className="board">
-        <span> {winner} </span>
+      <div className={"board " + (winner !== 'No winner... Game is going on' ? "finished" : "")}>
+        <span> {winner}  </span>
         <button onClick={() => reset()}>reset</button>
       </div>
     <div className="wrapper">
       {(grid.map((item, i) =>         
-        <li > 
-        <h3>
-        {grid[i] || '...'}
-        </h3>
+        <li className={(winningPositions.includes(i) ? 'winning' : '')}>
+        <h1>
+        {grid[i] || '...'} 
+        </h1>
         <div className="marks">
         <hr/>
         <button disabled={disableButtons} onClick={() => pick('x', i)}>X</button>
@@ -130,10 +140,10 @@ function App() {
       ))}
       
       {(grid2.map((item, i) =>         
-        <li > 
-        <h3>
+        <li className={(winningPositions.includes(i+3) ? 'winning' : '')}>
+        <h1>
         {grid2[i] ||  '...'}
-        </h3>
+        </h1>
         <hr/>
         <button disabled={disableButtons} onClick={() => pick('x', i+3)}>X</button>
         <button disabled={disableButtons} onClick={() => pick('o', i+3)}>O</button> 
@@ -141,10 +151,10 @@ function App() {
       ))}
 
       {(grid3.map((item, i) =>         
-        <li > 
-        <h3>
+        <li className={(winningPositions.includes(i+6) ? 'winning' : '')}>
+        <h1>
         {grid3[i] ||  '...'}
-        </h3>
+        </h1>
         <hr/>
         <button disabled={disableButtons} onClick={() => pick('x', i+6)}>X</button>
         <button disabled={disableButtons} onClick={() => pick('o', i+6)}>O</button> 
