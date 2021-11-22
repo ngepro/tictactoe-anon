@@ -7,6 +7,38 @@
   pointer-events: none;
 }
 
+.App-header li {
+  border: 1px solid black;
+  margin: 5%;
+  padding: 2%;
+  background-color: wheat;
+  text-align: center;
+  width: 90%;
+  height: 90%;
+  list-style: none;
+  display: block;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(10px, auto);
+  width: 70vw;
+  height: 70vh;
+}
+
+.board {
+  background-color:yellowgreen;
+  width: 70%;
+  padding: 1%;
+  border-radius: 5%;
+}
+
+.marks {
+  position:relative;
+  bottom:0;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
