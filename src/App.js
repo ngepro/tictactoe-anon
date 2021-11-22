@@ -119,8 +119,7 @@ function App() {
   }
 
   return (
-    <div className="App">
-    <header className="App-header">
+    <div className="App App-header" onMouseOver={checkForWinner}>
       <div className={"board " + (winner !== 'No winner... Game is going on' ? "finished" : "")}>
         <span> {winner}  </span>
         <button onClick={() => reset()}>reset</button>
@@ -162,7 +161,6 @@ function App() {
       ))}
 
       </div>
-    </header>
   </div>
   );
 }
