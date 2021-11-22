@@ -92,12 +92,26 @@ function markGrid(mark, position) {
   }
 }
 
+function reset() {
+  setTopleft('');
+  setTopcenter('');
+  setTopright('');
+  setCenterleft('');
+  setCentercenter('');
+  setCenterright('');
+  setBottomleft('');
+  setBottomcenter('');
+  setBottomright('');
+  setWinner('No winner... Game is going on');
+  setDisableButtons(false);
+}
+
   return (
     <div className="App">
     <header className="App-header">
       <div className="board">
         <span> {winner} </span>
-        {/* <button onClick={() => reset()}>reset</button> */}
+        <button onClick={() => reset()}>reset</button>
       </div>
     <div className="wrapper">
       {(grid.map((item, i) =>         
